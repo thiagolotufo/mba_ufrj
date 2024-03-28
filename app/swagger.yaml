@@ -1,0 +1,114 @@
+openapi: 3.0.0
+info:
+  title: Client para testar API em Python
+  description: Este client deve ser utilizado para testar uma API em Python
+  version: 1
+servers:
+  - url: http://localhost:3000
+paths:
+  /api/restaurants:
+    get:
+      summary: Retorna uma lista de restaurantes
+      description: Esta requisição retorna uma lista de restaurantes com suas respectivas informações
+      responses:
+        "200":
+          description: Array de restaurantes
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/definitions/restaurante"
+    post:
+      summary: Insere um novo restaurante
+      description: Esta requisição insere um novo restaurante passando as informações no corpo da requisição
+      requestBody:
+        description: Informações do restaurante
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/definitions/restaurante"
+      responses:
+        "200":
+          description: Created with success
+          content:
+            application/json:
+              properties:
+                status:
+                  type: string
+  /api/restaurants/{id}:
+    put:
+      summary: Altera as informações de um restaurante
+      description: Esta requisição altera o restaurante passando as novas informações no corpo da requisição
+      requestBody:
+        description: Informações do restaurante
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/definitions/restaurante"
+      responses:
+        "200":
+          description: Changed with success
+          content:
+            application/json:
+              properties:
+                status:
+                  type: string
+    delete:
+      summary: Excluir um restaurante
+      description: Esta requisição exclui o restaurante passando o ID no path
+      parameters:
+        - name: id
+          in: path
+          description: ID do restaurante
+      required:
+        - id
+      responses:
+        "200":
+          description: Deleted with success
+          content:
+            application/json:
+              properties:
+                status:
+                  type: string
+
+definitions:
+  restaurante:
+    type: object
+    properties:
+      id:
+        type: integer
+      name:
+        type: string
+      address:
+        $ref: "#/definitions/address"
+      url:
+        type: string
+      menu:
+        type: string
+      telephone:
+        type: string
+      priceRange:
+        type: string
+    required:
+      - id
+      - name
+      - address
+  address:
+    type: object
+    properties:
+      postalCode:
+        type: string
+      addressLocality:
+        type: string
+      addressRegion:
+        type: string
+      addressCountry:
+        type: string
+    required:
+      - postalCode
+      - addressLocality
+      - addressRegion
+      - addressCountry

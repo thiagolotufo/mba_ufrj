@@ -1,0 +1,44 @@
+version: "3"
+
+networks:
+  default:
+    name: mba_ufrj
+
+services:
+  client:
+    container_name: client
+    image: swaggerapi/swagger-ui
+    ports:
+      - "8080:8080"
+    environment:
+      SWAGGER_JSON: /app/swagger.yaml
+    volumes:
+      - ../app/swagger.yaml:/app/swagger.yaml
+
+  api:
+    container_name: backend
+    build:
+      context: ../
+      dockerfile: deployments/api.Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      MYSQL_HOST: mysql
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: pos_ufrj
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: admin
+      MYSQL_PORT: 3306
+
+  db:
+    container_name: database
+    image: mysql
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_HOST: mysql
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: pos_ufrj
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: admin
+      MYSQL_PORT: 3306
