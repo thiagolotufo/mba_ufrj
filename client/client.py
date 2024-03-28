@@ -47,12 +47,7 @@ def delete_restaurant(restaurant_id):
 if __name__ == '__main__':
     restaurant = {}
 
-    address = {
-        "postalCode": "",
-        "addressLocality": "",
-        "addressRegion": "",
-        "addressCountry": ""
-    }
+    address = {}
 
     option = "9"
 
