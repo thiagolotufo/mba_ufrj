@@ -1,0 +1,30 @@
+version: "3"
+
+networks:
+  default:
+    name: mba_ufrj
+
+services:
+  docs:
+    container_name: docs
+    image: swaggerapi/swagger-ui
+    ports:
+      - "8090:8090"
+    environment:
+      SWAGGER_JSON: /docs/swagger.yaml
+    volumes:
+      - ./docs/swagger.yaml:/docs/swagger.yaml
+
+  api:
+    container_name: backend
+    build:
+      context: ./
+      dockerfile: api.Dockerfile
+    ports:
+      - "5000:5000"
+
+  # db:
+  #   container_name: database
+  #   image: mysql
+  #   ports:
+  #     - "3306:3306"
