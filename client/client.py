@@ -31,8 +31,6 @@ def create_restaurant(data):
     }
     response = requests.post(
         'http://localhost:5000/api/restaurants', data=data, headers=headers)
-    print(data)
-    print(response.json())
     if response.status_code != 201:
         return "Error in request create_restaurant"
     
