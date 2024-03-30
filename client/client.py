@@ -58,7 +58,7 @@ def delete_restaurant(restaurant_id):
     if response.status_code != 204:
         return "Error in request delete_restaurant"
 
-    return response.json()
+    return "Restaurante deletado com sucesso!"
 
 
 if __name__ == '__main__':
