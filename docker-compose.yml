@@ -11,9 +11,9 @@ services:
     ports:
       - "8090:8090"
     environment:
-      SWAGGER_JSON: /docs/swagger.yaml
+      SWAGGER_JSON: /docs/swagger.json
     volumes:
-      - ./docs/swagger.yaml:/docs/swagger.yaml
+      - ./docs/swagger.json:/docs/swagger.json
 
   api:
     container_name: backend
