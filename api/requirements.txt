@@ -5,3 +5,4 @@ marshmallow
 SQLAlchemy
 marshmallow-sqlalchemy
 flask_marshmallow
+flask-cors

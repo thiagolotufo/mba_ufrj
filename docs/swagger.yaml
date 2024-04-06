@@ -4,12 +4,18 @@ info:
   description: Este client deve ser utilizado para testar uma API em Python
   version: "1"
 servers:
-  - url: http://localhost:3000
+  - url: http://localhost:5000
 paths:
   /api/restaurants:
     get:
       summary: Retorna uma lista de restaurantes
       description: Esta requisição retorna uma lista de restaurantes com suas respectivas informações
+      parameters:
+        - in: query
+          name: city
+          schema:
+            type: string
+          description: Buscar restaurantes por cidade
       responses:
         "200":
           description: Array de restaurantes
@@ -72,8 +78,6 @@ components:
     restaurante:
       type: object
       properties:
-        id:
-          type: integer
         name:
           type: string
         address:
@@ -87,13 +91,14 @@ components:
         priceRange:
           type: string
       required:
-        - id
         - name
         - addess
     address:
       type: object
       properties:
         postalCode:
+          type: string
+        streetAddress:
           type: string
         addressLocality:
           type: string
@@ -103,6 +108,7 @@ components:
           type: string
       required:
         - postalCode
+        - streetAddress
         - addressLocality
         - addressRegion
         - addressCountry

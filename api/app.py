@@ -1,4 +1,5 @@
 from flask import Flask
+from flask_cors import CORS
 import sqlite3
 
 from controller import api
@@ -9,6 +10,7 @@ from ma import ma
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///restaurant.db'
+CORS(app)
 
 db.init_app(app)
 

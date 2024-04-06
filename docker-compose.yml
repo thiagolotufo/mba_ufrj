@@ -9,9 +9,9 @@ services:
     container_name: docs
     image: swaggerapi/swagger-ui
     ports:
-      - "8090:8090"
+      - 8095:8095
     environment:
-      SWAGGER_JSON: /docs/swagger.json
+      SWAGGER_JSON: docs/swagger.json
     volumes:
       - ./docs/swagger.json:/docs/swagger.json
 
@@ -21,7 +21,7 @@ services:
       context: ./
       dockerfile: api.Dockerfile
     ports:
-      - "5000:5000"
+      - 5000:5000
 
   # db:
   #   container_name: database

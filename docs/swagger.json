@@ -1,180 +1,177 @@
 {
-    "openapi": "3.0.0",
-    "info": {
-        "title": "Client para testar API em Python",
-        "description": "Este client deve ser utilizado para testar uma API em Python",
-        "version": 1
-    },
-    "servers": [
-        {
-            "url": "http://localhost:3000"
-        }
-    ],
-    "paths": {
-        "/api/restaurants": {
-            "get": {
-                "summary": "Retorna uma lista de restaurantes",
-                "description": "Esta requisi\u00e7\u00e3o retorna uma lista de restaurantes com suas respectivas informa\u00e7\u00f5es",
-                "responses": {
-                    "200": {
-                        "description": "Array de restaurantes",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "array",
-                                    "items": {
-                                        "$ref": "#/definitions/restaurante"
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            },
-            "post": {
-                "summary": "Insere um novo restaurante",
-                "description": "Esta requisi\u00e7\u00e3o insere um novo restaurante passando as informa\u00e7\u00f5es no corpo da requisi\u00e7\u00e3o",
-                "requestBody": {
-                    "description": "Informa\u00e7\u00f5es do restaurante",
-                    "required": true,
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/definitions/restaurante"
-                            }
-                        }
-                    }
-                },
-                "responses": {
-                    "200": {
-                        "description": "Created with success",
-                        "content": {
-                            "application/json": {
-                                "properties": {
-                                    "status": {
-                                        "type": "string"
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        },
-        "/api/restaurants/{id}": {
-            "put": {
-                "summary": "Altera as informa\u00e7\u00f5es de um restaurante",
-                "description": "Esta requisi\u00e7\u00e3o altera o restaurante passando as novas informa\u00e7\u00f5es no corpo da requisi\u00e7\u00e3o",
-                "requestBody": {
-                    "description": "Informa\u00e7\u00f5es do restaurante",
-                    "required": true,
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/definitions/restaurante"
-                            }
-                        }
-                    }
-                },
-                "responses": {
-                    "200": {
-                        "description": "Changed with success",
-                        "content": {
-                            "application/json": {
-                                "properties": {
-                                    "status": {
-                                        "type": "string"
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            },
-            "delete": {
-                "summary": "Excluir um restaurante",
-                "description": "Esta requisi\u00e7\u00e3o exclui o restaurante passando o ID no path",
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "description": "ID do restaurante"
-                    }
-                ],
-                "required": [
-                    "id"
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Deleted with success",
-                        "content": {
-                            "application/json": {
-                                "properties": {
-                                    "status": {
-                                        "type": "string"
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    },
-    "definitions": {
-        "restaurante": {
-            "type": "object",
-            "properties": {
-                "id": {
-                    "type": "integer"
-                },
-                "name": {
-                    "type": "string"
-                },
-                "address": {
-                    "$ref": "#/definitions/address"
-                },
-                "url": {
-                    "type": "string"
-                },
-                "menu": {
-                    "type": "string"
-                },
-                "telephone": {
-                    "type": "string"
-                },
-                "priceRange": {
-                    "type": "string"
-                }
-            },
-            "required": [
-                "id",
-                "name",
-                "address"
-            ]
-        },
-        "address": {
-            "type": "object",
-            "properties": {
-                "postalCode": {
-                    "type": "string"
-                },
-                "addressLocality": {
-                    "type": "string"
-                },
-                "addressRegion": {
-                    "type": "string"
-                },
-                "addressCountry": {
-                    "type": "string"
-                }
-            },
-            "required": [
-                "postalCode",
-                "addressLocality",
-                "addressRegion",
-                "addressCountry"
-            ]
-        }
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Client para testar API em Python",
+    "description": "Este client deve ser utilizado para testar uma API em Python",
+    "version": "1"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:5000"
     }
+  ],
+  "paths": {
+    "/api/restaurants": {
+      "get": {
+        "summary": "Retorna uma lista de restaurantes",
+        "description": "Esta requisição retorna uma lista de restaurantes com suas respectivas informações",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "city",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Buscar restaurantes por cidade"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Array de restaurantes",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/restaurante"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Insere um novo restaurante",
+        "description": "Esta requisição insere um novo restaurante passando as informações no corpo da requisição",
+        "requestBody": {
+          "description": "Informações do restaurante",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/restaurante"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Created with success"
+          }
+        }
+      }
+    },
+    "/api/restaurants/{id}": {
+      "put": {
+        "summary": "Altera as informações de um restaurante",
+        "description": "Esta requisição altera o restaurante passando as novas informações no corpo da requisição",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of pet to fetch",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Informações do restaurante",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/restaurante"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Changed with success"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Excluir um restaurante",
+        "description": "Esta requisição exclui o restaurante passando o ID no path",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of pet to fetch",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Deleted with success"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "restaurante": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "address": {
+            "$ref": "#/components/schemas/address"
+          },
+          "url": {
+            "type": "string"
+          },
+          "menu": {
+            "type": "string"
+          },
+          "telephone": {
+            "type": "string"
+          },
+          "priceRange": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "name",
+          "addess"
+        ]
+      },
+      "address": {
+        "type": "object",
+        "properties": {
+          "postalCode": {
+            "type": "string"
+          },
+          "streetAddress": {
+            "type": "string"
+          },
+          "addressLocality": {
+            "type": "string"
+          },
+          "addressRegion": {
+            "type": "string"
+          },
+          "addressCountry": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "postalCode",
+          "streetAddress",
+          "addressLocality",
+          "addressRegion",
+          "addressCountry"
+        ]
+      }
+    }
+  }
 }
