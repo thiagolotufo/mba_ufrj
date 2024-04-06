@@ -12,10 +12,25 @@ paths:
       description: Esta requisição retorna uma lista de restaurantes com suas respectivas informações
       parameters:
         - in: query
-          name: city
+          name: postalCode
           schema:
             type: string
-          description: Buscar restaurantes por cidade
+        - in: query
+          name: streetAddress
+          schema:
+            type: string
+        - in: query
+          name: addressLocality
+          schema:
+            type: string
+        - in: query
+          name: addressRegion
+          schema:
+            type: string
+        - in: query
+          name: addressCountry
+          schema:
+            type: string
       responses:
         "200":
           description: Array de restaurantes

@@ -18,11 +18,43 @@
         "parameters": [
           {
             "in": "query",
-            "name": "city",
+            "name": "postalCode",
             "schema": {
               "type": "string"
             },
-            "description": "Buscar restaurantes por cidade"
+            "description": "Buscar restaurantes por CEP"
+          },
+          {
+            "in": "query",
+            "name": "streetAddress",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Buscar restaurantes por Endereço"
+          },
+          {
+            "in": "query",
+            "name": "addressLocality",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Buscar restaurantes por Bairro"
+          },
+          {
+            "in": "query",
+            "name": "addressRegion",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Buscar restaurantes por Municipio"
+          },
+          {
+            "in": "query",
+            "name": "addressCountry",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Buscar restaurantes por País"
           }
         ],
         "responses": {

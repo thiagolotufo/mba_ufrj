@@ -5,7 +5,7 @@
 
 - /api/restaurants  (GET|POST)
 - /api/restaurants/{id} (GET|PUT|DELETE)
-- /api/restaurants?city={city_name} (GET)
+- /api/restaurants?addressLocality={addressLocality} (GET)
 
 ### database
 
